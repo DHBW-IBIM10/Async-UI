@@ -13,3 +13,11 @@
 .navbar-wrapper {
     z-index: 15 !important;
 }
+
+.modal-body {
+    max-height: 600px !important;
+}
+
+.modal.fade.in {
+    top: 5% !important;
+}
