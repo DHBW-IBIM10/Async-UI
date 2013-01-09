@@ -45,6 +45,7 @@ function beantragen( ){
         showActivity('#mh');
     } else {
         showError("#mh","Falsche Eingaben","Bitte korrigieren Sie die Fehler in den roten Feldern.")
+        setTimeout(function(){$(".alert").alert('close');},5000)
     }
 }
 
