@@ -43,6 +43,17 @@ function beantragen( ){
         infoAlert("#mh");
         setTimeout(function(){$(".alert").alert('close');},2000);
         showActivity('#mh');
+        $.ajax({
+            url: "/request",
+            type: "POST",
+            data: JSON.stringify($("#policyForm").serializeArray()),
+            success: function(response) {
+
+            },
+            error: function(response){
+
+            }
+        });
     } else {
         showError("#mh","Falsche Eingaben","Bitte korrigieren Sie die Fehler in den roten Feldern.")
         setTimeout(function(){$(".alert").alert('close');},5000)

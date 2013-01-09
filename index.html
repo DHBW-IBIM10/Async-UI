@@ -384,7 +384,7 @@ body {
                                 <div class="control-group">
                                     <label class="control-label" for="titelInput">Titel</label>
                                     <div class="controls">
-                                        <select id="titelInput">
+                                        <select id="titelInput" name="titel">
                                             <option>Dipl.</option>
                                             <option>Dr.</option>
                                             <option>Prof. Dr.</option>
@@ -400,6 +400,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="VornameInput"
+                                                name="vorname"
                                                 placeholder="Max"
                                                 pattern="^([^ \x21-\x26\x28-\x2C\x2E-\x40\x5B-\x60\x7B-\xAC\xAE-\xBF\xF7\xFE]+)$"
                                                 title="Wir benötigen Ihren Vornamen."
@@ -415,6 +416,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="NachnameInput"
+                                                name="nachname"
                                                 placeholder="Mustermann"
                                                 pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
                                                 title="Nur mit einem Nachnamen können wir Sie korrekt ansprechen."
@@ -433,8 +435,10 @@ body {
                                                     id="inputGeburtstag"
                                                     data-date="12.02.2012"
                                                     data-date-format="dd.mm.yyyy"
-                                                    size="16" type="text"
+                                                    size="16"
+                                                    type="text"
                                                     value="12.02.2012"
+                                                    name="geburtstag"
                                                     title="Bitte nennen Sie uns Ihren Geburtstag."
                                                     required>
                                             <span class="add-on">
@@ -447,7 +451,7 @@ body {
                                 <div class="control-group">
                                     <label class="control-label" for="inputStand">Familienstand</label>
                                     <div class="controls">
-                                        <select id="inputStand" required>
+                                        <select id="inputStand" name="stand" required>
                                         <option>ledig</option>
                                         <option>verheiratet</option>
                                         <option>geschieden</option>
@@ -462,6 +466,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="StrInput"
+                                                name="straßeNummer"
                                                 placeholder="Musterstraße 1"
                                                 pattern="^(([a-zA-ZäöüÄÖÜ]\D*)\s+\d+?\s*.*)$"
                                                 title="Bitte geben sie eine gültige Straße mit Hausnummer an."
@@ -477,6 +482,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="plzInput"
+                                                name="plz"
                                                 placeholder="70199"
                                                 pattern="^((0(1\d\d[1-9])|([2-9]\d\d\d))|(?=^(^9{5}))|[1-9]\d{4})$"
                                                 title="Ihre PLZ entspricht nicht dem dt. Schema."
@@ -492,6 +498,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="StadtInput"
+                                                name="stadt"
                                                 placeholder="Musterhausen"
                                                 pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
                                                 title="Dies ist keine Stadt."
@@ -519,6 +526,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="BerufInput"
+                                                name="beruf"
                                                 placeholder="Angestellter"
                                                 pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
                                                 title="Als was arbeiten Sie?"
@@ -535,6 +543,7 @@ body {
                                             <input
                                                     type="text"
                                                     id="SummeInput"
+                                                    name="summe"
                                                     placeholder="500000"
                                                     pattern= "^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
                                                     title="Wie möchten Sie versichern?"
@@ -553,6 +562,7 @@ body {
                                             <input
                                                     type="text"
                                                     id="BehaltInput"
+                                                    name="behalt"
                                                     placeholder="10000"
                                                     pattern="^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
                                                     title="Definieren Sie Ihren Selbstbehalt."
