@@ -36,16 +36,29 @@ $('#collapseTwo').on('hidden', function () {
 });
 
 function beantragen( ){
-    // collapse form section
-    $(sels[states.indexOf(1)]).collapse('toggle');
+    if($('#policyForm').h5Validate('allValid')){
+        // collapse form section
+        $(sels[states.indexOf(1)]).collapse('toggle');
 
-    infoAlert("#mh");
-    setTimeout(function(){$(".alert").alert('close');},1000);
-    showActivity('#mh');
+        infoAlert("#mh");
+        setTimeout(function(){$(".alert").alert('close');},2000);
+        showActivity('#mh');
+    } else {
+        showError("#mh","Falsche Eingaben","Bitte korrigieren Sie die Fehler in den roten Feldern.")
+    }
 }
 
 function infoAlert(sel) {
     $(sel).append(alertInfo);
+    $(".alert").alert();
+}
+
+function showError(sel, T, MSG) {
+    var alertError =
+        "<div class='alert alert-error'>" +
+            "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
+            "<strong>"+T+"</strong>"+MSG+"</div>"
+    $(sel).append(alertError);
     $(".alert").alert();
 }
 

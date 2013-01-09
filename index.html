@@ -370,7 +370,7 @@ body {
         <h3 id="myModalLabel">Async Wohnen beantragen</h3>
     </div>
     <div class="modal-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="policyForm">
             <div class="accordion" id="accordion2">
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -382,16 +382,45 @@ body {
                         <div class="accordion-inner">
                             <fieldset>
                                 <div class="control-group">
-                                    <label class="control-label" for="inputVorname">Vorname</label>
+                                    <label class="control-label" for="titelInput">Titel</label>
                                     <div class="controls">
-                                        <input type="text" id="inputVorname" placeholder="Max">
+                                        <select id="titelInput">
+                                            <option>Dipl.</option>
+                                            <option>Dr.</option>
+                                            <option>Prof. Dr.</option>
+                                            <option>Dr. h.c.</option>
+                                            <option selected>---</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputNachname">Nachname</label>
+                                    <label class="control-label" for="VornameInput">Vorname</label>
                                     <div class="controls">
-                                        <input type="text" id="inputNachname" placeholder="Mustermann">
+                                        <input
+                                                type="text"
+                                                id="VornameInput"
+                                                placeholder="Max"
+                                                pattern="^([^ \x21-\x26\x28-\x2C\x2E-\x40\x5B-\x60\x7B-\xAC\xAE-\xBF\xF7\xFE]+)$"
+                                                title="Wir benötigen Ihren Vornamen."
+                                                data-h5-errorid="VornameError"
+                                                required>
+                                        <span class="help-inline" id="VornameError"></span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="NachnameInput">Nachname</label>
+                                    <div class="controls">
+                                        <input
+                                                type="text"
+                                                id="NachnameInput"
+                                                placeholder="Mustermann"
+                                                pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
+                                                title="Nur mit einem Nachnamen können wir Sie korrekt ansprechen."
+                                                data-h5-errorid="NachnameError"
+                                                required>
+                                        <span class="help-inline" id="NachnameError"></span>
                                     </div>
                                 </div>
 
@@ -399,7 +428,15 @@ body {
                                     <label class="control-label" for="inputGeburtstag">Geburtstag</label>
                                     <div class="controls">
                                         <div class="input-append date" id="geb">
-                                            <input class="span2" id="inputGeburtstag" data-date="12-02-2012" data-date-format="dd-mm-yyyy" size="16" type="text" value="12-02-2012" onfocus="$('#inputGeburtstag').datepicker()">
+                                            <input
+                                                    class="span2"
+                                                    id="inputGeburtstag"
+                                                    data-date="12.02.2012"
+                                                    data-date-format="dd.mm.yyyy"
+                                                    size="16" type="text"
+                                                    value="12.02.2012"
+                                                    title="Bitte nennen Sie uns Ihren Geburtstag."
+                                                    required>
                                             <span class="add-on">
                                                 <i class="icon-calendar"></i>
                                             </span>
@@ -410,7 +447,7 @@ body {
                                 <div class="control-group">
                                     <label class="control-label" for="inputStand">Familienstand</label>
                                     <div class="controls">
-                                        <select id="inputStand">
+                                        <select id="inputStand" required>
                                         <option>ledig</option>
                                         <option>verheiratet</option>
                                         <option>geschieden</option>
@@ -420,23 +457,47 @@ body {
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputStrNr">Straße und Hausnummer</label>
+                                    <label class="control-label" for="StrInput">Straße und Hausnummer</label>
                                     <div class="controls">
-                                        <input type="text" id="inputStrNr" placeholder="Musterstraße 1">
+                                        <input
+                                                type="text"
+                                                id="StrInput"
+                                                placeholder="Musterstraße 1"
+                                                pattern="^(([a-zA-ZäöüÄÖÜ]\D*)\s+\d+?\s*.*)$"
+                                                title="Bitte geben sie eine gültige Straße mit Hausnummer an."
+                                                data-h5-errorid="StrError"
+                                                required>
+                                        <span class="help-inline" id="StrError"></span>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputPlz">Postleitzahl</label>
+                                    <label class="control-label" for="plzInput">Postleitzahl</label>
                                     <div class="controls">
-                                        <input type="number" id="inputPlz" placeholder="12345">
+                                        <input
+                                                type="text"
+                                                id="plzInput"
+                                                placeholder="70199"
+                                                pattern="^((0(1\d\d[1-9])|([2-9]\d\d\d))|(?=^(^9{5}))|[1-9]\d{4})$"
+                                                title="Ihre PLZ entspricht nicht dem dt. Schema."
+                                                data-h5-errorid="plzError"
+                                                required>
+                                        <span class="help-inline" id="plzError"></span>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputStadt">Stadt</label>
+                                    <label class="control-label" for="StadtInput">Stadt</label>
                                     <div class="controls">
-                                        <input type="text" id="inputStadt" placeholder="Musterhausen">
+                                        <input
+                                                type="text"
+                                                id="StadtInput"
+                                                placeholder="Musterhausen"
+                                                pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
+                                                title="Dies ist keine Stadt."
+                                                data-h5-errorid="StadtError"
+                                                required>
+                                        <span class="help-inline" id="StadtError"></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -453,28 +514,52 @@ body {
                         <div class="accordion-inner">
                             <fieldset>
                                 <div class="control-group">
-                                    <label class="control-label" for="inputBeruf">Berufsgruppe</label>
+                                    <label class="control-label" for="BerufInput">Berufsgruppe</label>
                                     <div class="controls">
-                                        <input type="text" id="inputBeruf" placeholder="Angestellter">
+                                        <input
+                                                type="text"
+                                                id="BerufInput"
+                                                placeholder="Angestellter"
+                                                pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
+                                                title="Als was arbeiten Sie?"
+                                                data-h5-errorid="BerufError"
+                                                required>
+                                        <span class="help-inline" id="BerufError"></span>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputSumme">Versicherungssumme</label>
+                                    <label class="control-label" for="SummeInput">Versicherungssumme</label>
                                     <div class="controls">
                                         <div class="input-append">
-                                            <input type="number" id="inputSumme" placeholder="500000">
+                                            <input
+                                                    type="text"
+                                                    id="SummeInput"
+                                                    placeholder="500000"
+                                                    pattern= "^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
+                                                    title="Wie möchten Sie versichern?"
+                                                    data-h5-errorid="SummeError"
+                                                    required>
                                             <span class="add-on">€</span>
+                                            <span class="help-inline" id="SummeError"></span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputBehalt">Selbstbehalt</label>
+                                    <label class="control-label" for="BehaltInput">Selbstbehalt</label>
                                     <div class="controls">
                                         <div class="input-append">
-                                            <input type="number" id="inputBehalt" placeholder="10000">
+                                            <input
+                                                    type="text"
+                                                    id="BehaltInput"
+                                                    placeholder="10000"
+                                                    pattern="^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
+                                                    title="Definieren Sie Ihren Selbstbehalt."
+                                                    data-h5-errorid="BehaltError"
+                                                    required>
                                             <span class="add-on">€</span>
+                                            <span class="help-inline" id="BehaltError"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -504,6 +589,7 @@ body {
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.h5validate.js"></script>
 <script src="js/app.js"></script>
 <script>
     !function ($) {
@@ -512,6 +598,25 @@ body {
             $('#myCarousel').carousel()
         })
     }(window.jQuery)
+    $(document).ready(function () {
+        $('#policyForm').h5Validate({
+            invalidCallback:function(validity){
+                if(validity.element.parentElement.parentElement.className.indexOf("control-group") != -1){
+                    validity.element.parentElement.parentElement.className += " error"
+                } else {
+                    validity.element.parentElement.parentElement.parentElement.className += " error"
+                }
+            },
+            validCallback: function(validity){
+                if(validity.element.parentElement.parentElement.className.indexOf("control-group") != -1){
+                    validity.element.parentElement.parentElement.className += " success"
+                } else {
+                    validity.element.parentElement.parentElement.parentElement.className += " success"
+                }
+            }
+        });
+        $('#inputGeburtstag').datepicker()
+    });
 </script>
 
 
