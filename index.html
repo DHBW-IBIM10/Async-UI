@@ -612,16 +612,16 @@ body {
         $('#policyForm').h5Validate({
             invalidCallback:function(validity){
                 if(validity.element.parentElement.parentElement.className.indexOf("control-group") != -1){
-                    validity.element.parentElement.parentElement.className += " error"
+                    validity.element.parentElement.parentElement.className = "control-group error"
                 } else {
-                    validity.element.parentElement.parentElement.parentElement.className += " error"
+                    validity.element.parentElement.parentElement.parentElement.className = "control-group error"
                 }
             },
             validCallback: function(validity){
                 if(validity.element.parentElement.parentElement.className.indexOf("control-group") != -1){
-                    validity.element.parentElement.parentElement.className += " success"
+                    validity.element.parentElement.parentElement.className = "control-group success"
                 } else {
-                    validity.element.parentElement.parentElement.parentElement.className += " success"
+                    validity.element.parentElement.parentElement.parentElement.className = "control-group success"
                 }
             }
         });
