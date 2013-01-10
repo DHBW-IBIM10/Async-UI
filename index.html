@@ -418,7 +418,7 @@ body {
                                                 id="NachnameInput"
                                                 name="nachname"
                                                 placeholder="Mustermann"
-                                                pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
+                                                pattern="^[A-ZÄÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
                                                 title="Nur mit einem Nachnamen können wir Sie korrekt ansprechen."
                                                 data-h5-errorid="NachnameError"
                                                 required>
@@ -484,7 +484,7 @@ body {
                                                 id="plzInput"
                                                 name="plz"
                                                 placeholder="70199"
-                                                pattern="^((0(1\d\d[1-9])|([2-9]\d\d\d))|(?=^(^9{5}))|[1-9]\d{4})$"
+                                                pattern="^\d{5}$"
                                                 title="Ihre PLZ entspricht nicht dem dt. Schema."
                                                 data-h5-errorid="plzError"
                                                 required>
@@ -500,7 +500,7 @@ body {
                                                 id="StadtInput"
                                                 name="stadt"
                                                 placeholder="Musterhausen"
-                                                pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
+                                                pattern="^[A-ZAÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
                                                 title="Dies ist keine Stadt."
                                                 data-h5-errorid="StadtError"
                                                 required>
@@ -528,7 +528,7 @@ body {
                                                 id="BerufInput"
                                                 name="beruf"
                                                 placeholder="Angestellter"
-                                                pattern="^[A-Z][a-zA-Z\-' ]*[a-zA-Z ]$"
+                                                pattern="^[A-ZAÖÜ][a-zaöüA-ZAÖÜ\-' ]*[a-zaöüA-ZAÖÜ ]$"
                                                 title="Als was arbeiten Sie?"
                                                 data-h5-errorid="BerufError"
                                                 required>
