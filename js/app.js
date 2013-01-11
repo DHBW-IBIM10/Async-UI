@@ -6,11 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// alerts HTML
-
-var alertInfo =
-    "<div class=\"alert alert-info in\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Bitte warten…</strong> Ihr Angebot wird jetzt berechnet.</div>";
-
 // progress bars
 
 var activity = "<div class=\"progress progress-striped active\"><div class=\"bar\" style=\"width: 99%;\"></div></div>";
@@ -40,27 +35,41 @@ function beantragen( ){
         // collapse form section
         $(sels[states.indexOf(1)]).collapse('toggle');
 
-        infoAlert("#mh");
+        infoAlert("#mh","Please wait…"," Your offer is being calculated.")
         setTimeout(function(){$(".alert").alert('close');},2000);
         showActivity('#mh');
         $.ajax({
-            url: "/request",
+            url: "/insurances",
             type: "POST",
             data: JSON.stringify($("#policyForm").serializeArray()),
             success: function(response) {
-
+                showSuccess("#mh","You are insured now!")
+                setTimeout(function(){$(".alert").alert('close');},5000)
             },
             error: function(response){
-
+                showError("#mh","Error","")
+                setTimeout(function(){$(".alert").alert('close');},5000)
             }
         });
     } else {
-        showError("#mh","Falsche Eingaben","Bitte korrigieren Sie die Fehler in den roten Feldern.")
+        showError("#mh","Wrong input","Please fix the errors in the red fields.")
         setTimeout(function(){$(".alert").alert('close');},5000)
     }
 }
+function showSuccess(sel,MSG) {
+    var alertSuccess =
+        "<div class=\"alert alert-success in\">" +
+            "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+            "<strong>Success </strong>"+MSG+"</div>";
+    $(sel).append(alertSuccess);
+    $(".alert").alert();
+}
 
-function infoAlert(sel) {
+function infoAlert(sel,T,MSG) {
+    var alertInfo =
+        "<div class=\"alert alert-info in\">" +
+            "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+            "<strong>"+T+"</strong>"+MSG+"</div>";
     $(sel).append(alertInfo);
     $(".alert").alert();
 }
