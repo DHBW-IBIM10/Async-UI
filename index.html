@@ -384,7 +384,7 @@ body {
                                 <div class="control-group">
                                     <label class="control-label" for="anredeInput">Anrede</label>
                                     <div class="controls">
-                                        <select id="anredeInput" name="titel" required>
+                                        <select id="anredeInput" name="address" required>
                                             <option selected>Herr</option>
                                             <option>Frau</option>
                                         </select>
@@ -394,7 +394,7 @@ body {
                                 <div class="control-group">
                                     <label class="control-label" for="titelInput">Titel</label>
                                     <div class="controls">
-                                        <select id="titelInput" name="titel">
+                                        <select id="titelInput" name="title">
                                             <option>Dipl.</option>
                                             <option>Dr.</option>
                                             <option>Prof. Dr.</option>
@@ -410,7 +410,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="VornameInput"
-                                                name="vorname"
+                                                name="name"
                                                 placeholder="Max"
                                                 pattern="^([^ \x21-\x26\x28-\x2C\x2E-\x40\x5B-\x60\x7B-\xAC\xAE-\xBF\xF7\xFE]+)$"
                                                 title="Wir benötigen Ihren Vornamen."
@@ -426,7 +426,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="NachnameInput"
-                                                name="nachname"
+                                                name="surname"
                                                 placeholder="Mustermann"
                                                 pattern="^[A-ZÄÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
                                                 title="Nur mit einem Nachnamen können wir Sie korrekt ansprechen."
@@ -448,7 +448,7 @@ body {
                                                     size="16"
                                                     type="text"
                                                     value="12.02.2012"
-                                                    name="geburtstag"
+                                                    name="birthday"
                                                     title="Bitte nennen Sie uns Ihren Geburtstag."
                                                     required>
                                             <span class="add-on">
@@ -461,7 +461,7 @@ body {
                                 <div class="control-group">
                                     <label class="control-label" for="inputStand">Familienstand</label>
                                     <div class="controls">
-                                        <select id="inputStand" name="stand" required>
+                                        <select id="inputStand" name="maritalStatus" required>
                                         <option>ledig</option>
                                         <option>verheiratet</option>
                                         <option>geschieden</option>
@@ -476,7 +476,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="StrInput"
-                                                name="straßeNummer"
+                                                name="streetNr"
                                                 placeholder="Musterstraße 1"
                                                 pattern="^(([a-zA-ZäöüÄÖÜ]\D*)\s+\d+?\s*.*)$"
                                                 title="Bitte geben sie eine gültige Straße mit Hausnummer an."
@@ -492,7 +492,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="plzInput"
-                                                name="plz"
+                                                name="zip"
                                                 placeholder="70199"
                                                 pattern="^\d{5}$"
                                                 title="Ihre PLZ entspricht nicht dem dt. Schema."
@@ -508,7 +508,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="StadtInput"
-                                                name="stadt"
+                                                name="city"
                                                 placeholder="Musterhausen"
                                                 pattern="^[A-ZAÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
                                                 title="Dies ist keine Stadt."
@@ -536,7 +536,7 @@ body {
                                         <input
                                                 type="text"
                                                 id="BerufInput"
-                                                name="beruf"
+                                                name="work"
                                                 placeholder="Angestellter"
                                                 pattern="^[A-ZAÖÜ][a-zaöüA-ZAÖÜ\-' ]*[a-zaöüA-ZAÖÜ ]$"
                                                 title="Als was arbeiten Sie?"
@@ -553,7 +553,7 @@ body {
                                             <input
                                                     type="text"
                                                     id="SummeInput"
-                                                    name="summe"
+                                                    name="amountInsured"
                                                     placeholder="500000"
                                                     pattern= "^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
                                                     title="Wie möchten Sie versichern?"
@@ -572,7 +572,7 @@ body {
                                             <input
                                                     type="text"
                                                     id="BehaltInput"
-                                                    name="behalt"
+                                                    name="ownershipStake"
                                                     placeholder="10000"
                                                     pattern="^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
                                                     title="Definieren Sie Ihren Selbstbehalt."
