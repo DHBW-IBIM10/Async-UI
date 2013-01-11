@@ -419,7 +419,7 @@ body {
                                                 name="name"
                                                 placeholder="Max"
                                                 pattern="^([^ \x21-\x26\x28-\x2C\x2E-\x40\x5B-\x60\x7B-\xAC\xAE-\xBF\xF7\xFE]+)$"
-                                                title="Wir benötigen Ihren Vornamen."
+                                                title="Please tell us your name."
                                                 data-h5-errorid="VornameError"
                                                 required>
                                         <span class="help-inline" id="VornameError"></span>
@@ -433,9 +433,9 @@ body {
                                                 type="text"
                                                 id="NachnameInput"
                                                 name="surname"
-                                                placeholder="Mustermann"
+                                                placeholder="Exampleman"
                                                 pattern="^[A-ZÄÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
-                                                title="Nur mit einem Nachnamen können wir Sie korrekt ansprechen."
+                                                title="Without your surname we don't know how to address you."
                                                 data-h5-errorid="NachnameError"
                                                 required>
                                         <span class="help-inline" id="NachnameError"></span>
@@ -455,7 +455,7 @@ body {
                                                     type="text"
                                                     value="12.02.2012"
                                                     name="birthday"
-                                                    title="Bitte nennen Sie uns Ihren Geburtstag."
+                                                    title="We need your birthday, so we know when to send your cake."
                                                     required>
                                             <span class="add-on">
                                                 <i class="icon-calendar"></i>
@@ -468,10 +468,10 @@ body {
                                     <label class="control-label" for="inputStand">Marital Status</label>
                                     <div class="controls">
                                         <select id="inputStand" name="maritalStatus" required>
-                                        <option>ledig</option>
-                                        <option>verheiratet</option>
-                                        <option>geschieden</option>
-                                        <option>verwittwet</option>
+                                        <option>single</option>
+                                        <option>married</option>
+                                        <option>divorced</option>
+                                        <option>widowed</option>
                                     </select>
                                     </div>
                                 </div>
@@ -483,9 +483,9 @@ body {
                                                 type="text"
                                                 id="StrInput"
                                                 name="streetNr"
-                                                placeholder="Musterstraße 1"
+                                                placeholder="Example Street 1"
                                                 pattern="^(([a-zA-ZäöüÄÖÜ]\D*)\s+\d+?\s*.*)$"
-                                                title="Bitte geben sie eine gültige Straße mit Hausnummer an."
+                                                title="Please enter a valid street and number ín the format 'STREET NR'"
                                                 data-h5-errorid="StrError"
                                                 required>
                                         <span class="help-inline" id="StrError"></span>
@@ -500,8 +500,8 @@ body {
                                                 id="plzInput"
                                                 name="zip"
                                                 placeholder="70199"
-                                                pattern="^\d{5}$"
-                                                title="Ihre PLZ entspricht nicht dem dt. Schema."
+                                                pattern="^\d{5}$|^[0-9]{5}(-[0-9]{4})?$|^([A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW])\ [0-9][ABD-HJLNP-UW-Z]{2}|(GIR\ 0AA)|(SAN\ TA1)|(BFPO\ (C\/O\ )?[0-9]{1,4})|((ASCN|BBND|[BFS]IQQ|PCRN|STHL|TDCU|TKCA)\ 1ZZ))$"
+                                                title="You didn't enter a valid US, UK or Germany postal code."
                                                 data-h5-errorid="plzError"
                                                 required>
                                         <span class="help-inline" id="plzError"></span>
@@ -515,9 +515,9 @@ body {
                                                 type="text"
                                                 id="StadtInput"
                                                 name="city"
-                                                placeholder="Musterhausen"
+                                                placeholder="Example Town"
                                                 pattern="^[A-ZAÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
-                                                title="Dies ist keine Stadt."
+                                                title="This doesn't appear to be a city."
                                                 data-h5-errorid="StadtError"
                                                 required>
                                         <span class="help-inline" id="StadtError"></span>
@@ -543,9 +543,9 @@ body {
                                                 type="text"
                                                 id="BerufInput"
                                                 name="career"
-                                                placeholder="Angestellter"
+                                                placeholder="Employee"
                                                 pattern="^[A-ZAÖÜ][a-zaöüA-ZAÖÜ\-' ]*[a-zaöüA-ZAÖÜ ]$"
-                                                title="Als was arbeiten Sie?"
+                                                title="What do you do for a living?"
                                                 data-h5-errorid="BerufError"
                                                 required>
                                         <span class="help-inline" id="BerufError"></span>
@@ -562,7 +562,7 @@ body {
                                                     name="amountInsured"
                                                     placeholder="500000"
                                                     pattern= "^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
-                                                    title="Wie möchten Sie versichern?"
+                                                    title="How much do you want to insure?"
                                                     data-h5-errorid="SummeError"
                                                     required>
                                             <span class="add-on">€</span>
@@ -581,7 +581,7 @@ body {
                                                     name="ownershipStake"
                                                     placeholder="10000"
                                                     pattern="^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
-                                                    title="Definieren Sie Ihren Selbstbehalt."
+                                                    title="How much do you pay yourself?"
                                                     data-h5-errorid="BehaltError"
                                                     required>
                                             <span class="add-on">€</span>
