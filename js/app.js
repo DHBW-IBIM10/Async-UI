@@ -41,6 +41,7 @@ function beantragen( ){
         $.ajax({
             url: "/insurances",
             type: "POST",
+          contentType: "application/json; charset=utf-8",
             data: JSON.stringify($("#policyForm").serializeArray()),
             success: function(response) {
                 showSuccess("#mh","You are insured now!")
