@@ -44,8 +44,17 @@ function beantragen( ){
           contentType: "application/json; charset=utf-8",
             data: JSON.stringify($("#policyForm").serializeArray()),
             success: function(response) {
-                showSuccess("#mh","You are insured now!")
-                setTimeout(function(){$(".alert").alert('close');},5000)
+                if(!$.isEmptyObject(response)) {
+                    showError("#mh","Wrong input","Please fix the errors in the red fields.")
+                    $(sels[states.indexOf(0)]).collapse('toggle')
+                    setTimeout(function(){$(".alert").alert('close');},5000)
+                    $.each(response,function(index, value) {
+                        $(('*[name=]' + value.name)).h5Validate('markInvalid')
+                    })
+                } else {
+                    showSuccess("#mh","You are insured now!")
+                    setTimeout(function(){$(".alert").alert('close');},5000)
+                }
             },
             error: function(response){
                 showError("#mh","Error","")
