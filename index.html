@@ -589,6 +589,20 @@ body {
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="Price">Price</label>
+                                    <div class="controls">
+                                        <div class="input-append">
+                                            <input
+                                                    type="text"
+                                                    id="Price"
+                                                    name="price"
+                                                    disabled>
+                                            <span class="add-on">€</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </fieldset>
                         </div>
                     </div>
@@ -642,6 +656,30 @@ body {
             }
         });
         $('#inputGeburtstag').datepicker()
+
+        // bind the request method to the change event
+        $('#SummeInput').keyup(function() {
+            $.ajax({
+                url: '/pricecalculation',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                data: ("{amount:" + $(this).val() +"}"),
+                success: function(response) {
+                    $('#Price').val(response.price)
+                }
+            });
+        });
+        $('#BehaltInput').keyup(function() {
+            $.ajax({
+                url: '/pricecalculation',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                data: ("{amount:" + $(this).val() +"}"),
+                success: function(response) {
+                    $('#Price').val(response.price)
+                }
+            });
+        });
     });
 </script>
 

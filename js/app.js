@@ -30,6 +30,19 @@ $('#collapseTwo').on('hidden', function () {
     states[1] = 0;
 });
 
+// dynamically request the price
+function f_req(value, input) {
+    $.ajax({
+        url: '/pricecalculation',
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: ("{" + input +":}" + value),
+        success: function(response) {
+            $('#Price').val(response.price)
+        }
+    });
+}
+
 function beantragen( ){
     if($('#policyForm').h5Validate('allValid')){
         // collapse form section
