@@ -667,7 +667,7 @@ body {
         var formId = (getURLParameter("formId") != "null" ? getURLParameter("formId") : null);
 
         // establish connection
-        var socket = io.connect('http://localhost:8888/');
+        var socket = io.connect('https://localhost:4431/');
 
         // check if user has a room in his URL, otherwise ask for ID
         if (formId == null) {
