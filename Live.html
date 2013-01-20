@@ -644,7 +644,8 @@ body {
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/jquery.h5validate.js"></script>
 <script src="js/app.js"></script>
-<script src="/socket.io/socket.io.js"></script>
+<script src="http://cdn.sockjs.org/sockjs-0.2.1.min.js"></script>
+<script src='vertxbus.js'></script>
 <script>
     !function ($) {
         $(function () {
@@ -655,32 +656,90 @@ body {
     $(document).ready(function () {
 
 
-        // Websockets
+        // Websockets 
+          var eb = null;
 
-        // read query string
+		  function publish(address,  message) {
+		    if (eb) {
+		      var json = {"message": message};
+		      eb.publish(address, json);
+		      console.log("sent message" + json);
+		    }
+		  }
+		
+		  function subscribe(address) {
+		    if (eb) {
+		      eb.registerHandler(address, function(msg, replyTo) {
+		        console.log("Address:" + address + " Message:" + msg.text + "<br>");
+		      });
+		    }
+		  }
+		
+		  function closeConn() {
+		    if (eb) {
+		      eb.close();
+		    }
+		  }
+		
+		  function openConn() {
+		    if (!eb) {
+		      eb = new vertx.EventBus("http://localhost:8080/eventbus");
+		
+		      eb.onopen = function() {
+		        console.log("Connected");
+		        //log all messages
+		        subscribe("form.client.data");		        
+		        //handle data that is received from the server
+		        eb.registerHandler("form.client.data", function(msg, replyTo) {
+		        	receiveFromServer(msg);
+		          });
+		        
+		        checkRoomId();	        
+		      };
+		
+		      eb.onclose = function() {
+		        console.log("Connection closed.");
+		        eb = null;
+		      };
+		    }
+		  }
+        
+        
+        
+
+        // read query string 
         function getURLParameter(name) {
             return decodeURIComponent(
                     (location.search.match(RegExp("[?|&]" + name + '=(.+?)(&|$)')) || [, null])[1]
             );
         }
-
         var formId = (getURLParameter("formId") != "null" ? getURLParameter("formId") : null);
 
-        // establish connection
-        var socket = io.connect('https://localhost:4431/');
-
+        
+		// connect with backends eventbus
+	    openConn();
+ 			
         // check if user has a room in his URL, otherwise ask for ID
-        if (formId == null) {
-            socket.on('connect', function () {
-                socket.emit('createForm', prompt('What is your ID?'));
-            });
-        } else {
-            socket.emit('createForm', formId);
+        function checkRoomId() {
+            if (formId == null) {
+                publish('form.create', prompt('What is your ID?'));
+            } else {
+                publish('form.create', formId);
+            }        	
         }
 
-        // write data coming from server into form field
-        socket.on("liveform", function (data) {
-            // read (unknown) field from JSON
+		
+
+		/**
+		 * receive data and update form fields.
+		 */
+	    function receiveFromServer(data) {
+    		// write data coming from server into form field
+    		if(data == undefined){
+    			return;
+    		}
+    		//console.log('received a message: ' + JSON.stringify(message));
+    		
             for (key in data) {
                 // distinction between select and input fields
                 if (document.getElementById(key).tagName == "SELECT") {
@@ -697,8 +756,8 @@ body {
                 // trigger validation to have smiliar visual appearances (valid/invalid) for the fields
                 $('#' + key).h5Validate("isValid");
             }
+    	}
 
-        });
 
         // send form data to server
         function sendToServer(fieldId) {
@@ -709,7 +768,7 @@ body {
             } else {
                 JSONdata[fieldId] = document.getElementById(fieldId).value;
             }
-            socket.emit("liveform", JSONdata);
+            eb.send("form.data", JSONdata);
 
         }
 
