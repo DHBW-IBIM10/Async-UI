@@ -31,16 +31,20 @@ $('#collapseTwo').on('hidden', function () {
 });
 
 // dynamically request the price
-function f_req(value, input) {
-    $.ajax({
-        url: '/pricecalculation',
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        data: ("{" + input +":}" + value),
-        success: function(response) {
-            $('#Price').val(response.price)
-        }
-    });
+function f_req() {
+
+    if($("#BerufInput").h5Validate("isValid") && $("#SummeInput").h5Validate("isValid") && $("#BehaltInput").h5Validate("isValid")) {
+        var JSONdata = [{BerufInput: $("#BerufInput").val(), SummeInput: $("#SummeInput").val(), BehaltInput: $("#BehaltInput").val()}];
+        $.ajax({
+            url: '/pricecalculation',
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: (JSON.stringify(JSONdata)),
+            success: function(response) {
+                $('#Price').val(response.price);
+            }
+        });
+    }
 }
 
 function beantragen( ){

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Async Versicherungen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Le styles -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/datepicker.css">
+<link href="css/custom.css" rel="stylesheet">
+<style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+body {
+    padding-bottom: 40px;
+    color: #5a5a5a;
+}
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 20px;
+    margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+
+.navbar-wrapper .navbar {
+
+}
+
+    /* Remove border and change up box shadow for more contrast */
+.navbar .navbar-inner {
+    border: 0;
+    -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+    -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+
+    /* Downsize the brand/project name a bit */
+.navbar .brand {
+    padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .5);
+}
+
+    /* Navbar links: increase padding for taller navbar */
+.navbar .nav > li > a {
+    padding: 15px 20px;
+}
+
+    /* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+    margin-top: 10px;
+}
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+.carousel {
+    margin-bottom: 60px;
+}
+
+.carousel .container {
+    position: relative;
+    z-index: 10;
+}
+
+.carousel-control {
+    height: 80px;
+    margin-top: 0;
+    font-size: 120px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+    background-color: transparent;
+    border: 0;
+}
+
+.carousel .item {
+    height: 650px;
+}
+
+.carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 750px;
+}
+
+.carousel-caption {
+    background-color: transparent;
+    position: static;
+    max-width: 550px;
+    padding: 0 20px;
+    margin-top: 400px;
+}
+
+.carousel-caption h1,
+.carousel-caption .lead {
+    margin: 0;
+    line-height: 1.25;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+.carousel-caption .btn {
+    margin-top: 10px;
+}
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+.marketing .span4 {
+    text-align: center;
+}
+
+.marketing h2 {
+    font-weight: normal;
+}
+
+.marketing .span4 p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+    /* Featurettes
+    ------------------------- */
+
+.featurette-divider {
+    margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+.featurette {
+    padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+    overflow: hidden; /* Vertically center images part 2: clear their floats. */
+}
+
+.featurette-image {
+    margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+    margin-right: 40px;
+}
+
+.featurette-image.pull-right {
+    margin-left: 40px;
+}
+
+    /* Thin out the marketing headings */
+.featurette-heading {
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+@media (max-width: 979px) {
+
+    .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+    }
+
+    .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+    }
+
+    .carousel .item {
+        height: 500px;
+    }
+
+    .carousel img {
+        width: auto;
+        height: 500px;
+    }
+
+    .featurette {
+        height: auto;
+        padding: 0;
+    }
+
+    .featurette-image.pull-left,
+    .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .navbar-inner {
+        margin: -20px;
+    }
+
+    .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+    .carousel .container {
+
+    }
+
+    .carousel .item {
+        height: 300px;
+    }
+
+    .carousel img {
+        height: 300px;
+    }
+
+    .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+    }
+
+    .carousel-caption h1 {
+        font-size: 30px;
+    }
+
+    .carousel-caption .lead,
+    .carousel-caption .btn {
+        font-size: 18px;
+    }
+
+    .marketing .span4 + .span4 {
+        margin-top: 40px;
+    }
+
+    .featurette-heading {
+        font-size: 30px;
+    }
+
+    .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+}
+</style>
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="ico/favicon.png">
+<style type="text/css"></style>
+</head>
+
+<body>
+
+
+<!-- NAVBAR
+================================================== -->
+<div class="navbar-wrapper">
+    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+    <div class="container">
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Async Insurance</a>
+                <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!-- /.navbar-inner -->
+        </div>
+        <!-- /.navbar -->
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.navbar-wrapper -->
+
+
+<!-- Carousel
+================================================== -->
+<div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="img/products/house-bing.jpg" alt="">
+
+            <div class="container">
+                <div class="carousel-caption pull-right">
+                    <h1>Individuality</h1>
+
+                    <p class="lead">Async Living helps you realizing your dream home while protecting
+                        you should anything go wrong along the way and afterwards.</p>
+                    <a
+                            class="btn btn-large btn-primary"
+                            href="#myModal"
+                            role="button"
+                            data-toggle="modal">Own your home</a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="img/products/unfall.jpg" alt="">
+
+            <div class="container">
+                <div class="carousel-caption pull-right">
+                    <h1>You love your car…</h1>
+
+                    <p class="lead">Sometimes, your favorite won't be in the best mood,
+                        Async Auto helps you helping him (or her).</p>
+                    <a class="btn btn-large btn-primary" href="#">Insure now</a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="img/products/familie.jpg" alt="">
+
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Family is everything</h1>
+
+                    <p class="lead">Support in every situation… with Async Life</p>
+                    <a class="btn btn-large btn-primary" href="#">Live worry-free now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+</div>
+<!-- /.carousel -->
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header" id="mh">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Apply for Async Living</h3>
+</div>
+<div class="modal-body">
+<form class="form-horizontal" id="policyForm">
+<div class="accordion" id="accordion2">
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+            1. Insuree
+        </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+        <div class="accordion-inner">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="anredeInput">Address</label>
+
+                    <div class="controls">
+                        <select id="anredeInput" name="address" required>
+                            <option selected>Mr.</option>
+                            <option>Mrs.</option>
+                            <option>Ms.</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="titelInput">Title</label>
+
+                    <div class="controls">
+                        <select id="titelInput" name="title">
+                            <option>Sir</option>
+                            <option>Dipl.</option>
+                            <option>Dr.</option>
+                            <option>Prof. Dr.</option>
+                            <option>Dr. h.c.</option>
+                            <option selected>---</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="VornameInput">Name</label>
+
+                    <div class="controls">
+                        <input
+                                type="text"
+                                id="VornameInput"
+                                name="name"
+                                placeholder="Max"
+                                pattern="^([^ \x21-\x26\x28-\x2C\x2E-\x40\x5B-\x60\x7B-\xAC\xAE-\xBF\xF7\xFE]+)$"
+                                title="Please tell us your name."
+                                data-h5-errorid="VornameError"
+                                required>
+                        <span class="help-inline" id="VornameError"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="NachnameInput">Surname</label>
+
+                    <div class="controls">
+                        <input
+                                type="text"
+                                id="NachnameInput"
+                                name="surname"
+                                placeholder="Exampleman"
+                                pattern="^[A-ZÄÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
+                                title="Without your surname we don't know how to address you."
+                                data-h5-errorid="NachnameError"
+                                required>
+                        <span class="help-inline" id="NachnameError"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="inputGeburtstag">Date of Birth</label>
+
+                    <div class="controls">
+                        <div class="input-append date" id="geb">
+                            <input
+                                    class="span2"
+                                    id="inputGeburtstag"
+                                    data-date="12.02.2012"
+                                    data-date-format="dd.mm.yyyy"
+                                    size="16"
+                                    type="text"
+                                    value="12.02.2012"
+                                    name="birthday"
+                                    title="We need your birthday, so we know when to send your cake."
+                                    required>
+                                            <span class="add-on">
+                                                <i class="icon-calendar"></i>
+                                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="inputStand">Marital Status</label>
+
+                    <div class="controls">
+                        <select id="inputStand" name="maritalStatus" required>
+                            <option>single</option>
+                            <option>married</option>
+                            <option>divorced</option>
+                            <option>widowed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="StrInput">Street and Number</label>
+
+                    <div class="controls">
+                        <input
+                                type="text"
+                                id="StrInput"
+                                name="streetNr"
+                                placeholder="Example Street 1"
+                                pattern="^(([a-zA-ZäöüÄÖÜ]\D*)\s+\d+?\s*.*)$"
+                                title="Please enter a valid street and number ín the format 'STREET NR'"
+                                data-h5-errorid="StrError"
+                                required>
+                        <span class="help-inline" id="StrError"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="plzInput">Postal Code (Zip)</label>
+
+                    <div class="controls">
+                        <input
+                                type="text"
+                                id="plzInput"
+                                name="zip"
+                                placeholder="70199"
+                                pattern="^\d{5}$|^[0-9]{5}(-[0-9]{4})?$|^([A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW])\ [0-9][ABD-HJLNP-UW-Z]{2}|(GIR\ 0AA)|(SAN\ TA1)|(BFPO\ (C\/O\ )?[0-9]{1,4})|((ASCN|BBND|[BFS]IQQ|PCRN|STHL|TDCU|TKCA)\ 1ZZ))$"
+                                title="You didn't enter a valid US, UK or Germany postal code."
+                                data-h5-errorid="plzError"
+                                required>
+                        <span class="help-inline" id="plzError"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="StadtInput">City</label>
+
+                    <div class="controls">
+                        <input
+                                type="text"
+                                id="StadtInput"
+                                name="city"
+                                placeholder="Example Town"
+                                pattern="^[A-ZAÖÜ][a-zäöüA-ZÄÖÜ\-' ]*[a-zäöüA-ZÄÖÜ ]$"
+                                title="This doesn't appear to be a city."
+                                data-h5-errorid="StadtError"
+                                required>
+                        <span class="help-inline" id="StadtError"></span>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            2. Risk Appraisal
+        </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+        <div class="accordion-inner">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="BerufInput">Career</label>
+
+                    <div class="controls">
+                        <input
+                                type="text"
+                                id="BerufInput"
+                                name="career"
+                                placeholder="Employee"
+                                pattern="^[A-ZAÖÜ][a-zaöüA-ZAÖÜ\-' ]*[a-zaöüA-ZAÖÜ ]$"
+                                title="What do you do for a living?"
+                                data-h5-errorid="BerufError"
+                                required>
+                        <span class="help-inline" id="BerufError"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="SummeInput">Amount Insured</label>
+
+                    <div class="controls">
+                        <div class="input-append">
+                            <input
+                                    type="text"
+                                    id="SummeInput"
+                                    name="amountInsured"
+                                    placeholder="500000"
+                                    pattern="^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
+                                    title="How much do you want to insure?"
+                                    data-h5-errorid="SummeError"
+                                    required>
+                            <span class="add-on">€</span>
+                            <span class="help-inline" id="SummeError"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="BehaltInput">Ownership Stake</label>
+
+                    <div class="controls">
+                        <div class="input-append">
+                            <input
+                                    type="text"
+                                    id="BehaltInput"
+                                    name="ownershipStake"
+                                    placeholder="10000"
+                                    pattern="^\€?([1-9]{1}[0-9]{0,2}(\.[0-9]{3})*(\,[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\,[0-9]{0,2})?|0(\,[0-9]{0,2})?|(\,[0-9]{1,2})?)$"
+                                    title="How much do you pay yourself?"
+                                    data-h5-errorid="BehaltError"
+                                    required>
+                            <span class="add-on">€</span>
+                            <span class="help-inline" id="BehaltError"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="Price">Price</label>
+
+                    <div class="controls">
+                        <div class="input-append">
+                            <input
+                                    type="text"
+                                    id="Price"
+                                    name="price"
+                                    disabled>
+                            <span class="add-on">€</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Back</button>
+    <button class="btn btn-primary" onclick="beantragen()">Apply</button>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p class="pull-right"><a href="#">Back to top</a></p>
+
+    <p>© 2012 Async Versicherungen AG · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+</footer>
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.h5validate.js"></script>
+<script src="js/app.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    !function ($) {
+        $(function () {
+            // carousel demo
+            $('#myCarousel').carousel()
+        })
+    }(window.jQuery)
+    $(document).ready(function () {
+
+
+        // Websockets
+
+        // read query string
+        function getURLParameter(name) {
+            return decodeURIComponent(
+                    (location.search.match(RegExp("[?|&]" + name + '=(.+?)(&|$)')) || [, null])[1]
+            );
+        }
+
+        var formId = (getURLParameter("formId") != "null" ? getURLParameter("formId") : null);
+
+        // establish connection
+        var socket = io.connect('https://localhost:4431/');
+
+        // check if user has a room in his URL, otherwise ask for ID
+        if (formId == null) {
+            socket.on('connect', function () {
+                socket.emit('createForm', prompt('What is your ID?'));
+            });
+        } else {
+            socket.emit('createForm', formId);
+        }
+
+        // write data coming from server into form field
+        socket.on("liveform", function (data) {
+            // read (unknown) field from JSON
+            for (key in data) {
+                // distinction between select and input fields
+                if (document.getElementById(key).tagName == "SELECT") {
+                    // write content into field
+                    document.getElementById(key).selectedIndex = data[key];
+                } else {
+                    // write content into field
+                    document.getElementById(key).value = data[key];
+                    // also trigger the price calculation when these fields are filled
+                    if (key == "SummeInput" || key == "BehaltInput" || key == "BerufInput") {
+                        f_req();
+                    }
+                }
+                // trigger validation to have smiliar visual appearances (valid/invalid) for the fields
+                $('#' + key).h5Validate("isValid");
+            }
+
+        });
+
+        // send form data to server
+        function sendToServer(fieldId) {
+            var JSONdata = {};
+            // write JSON, depending on INPUT or SELECT field
+            if (document.getElementById(fieldId).tagName == "SELECT") {
+                JSONdata[fieldId] = document.getElementById(fieldId).selectedIndex;
+            } else {
+                JSONdata[fieldId] = document.getElementById(fieldId).value;
+            }
+            socket.emit("liveform", JSONdata);
+
+        }
+
+
+        $('#policyForm').h5Validate({
+            invalidCallback: function (validity) {
+                if (validity.element.parentElement.parentElement.className.indexOf("control-group") != -1) {
+                    validity.element.parentElement.parentElement.className = "control-group error"
+                } else {
+                    validity.element.parentElement.parentElement.parentElement.className = "control-group error"
+                }
+            },
+            validCallback: function (validity) {
+                if (validity.element.parentElement.parentElement.className.indexOf("control-group") != -1) {
+                    validity.element.parentElement.parentElement.className = "control-group success"
+                } else {
+                    validity.element.parentElement.parentElement.parentElement.className = "control-group success"
+                }
+            }
+        });
+        $('#inputGeburtstag').datepicker()
+
+
+        // trigger request for each key written in input/select fields
+        $('input[type="text"]').on('keyup', function () {
+            var id = $(this).attr("id"); // variable id = id of current textfield
+            sendToServer(id);
+        });
+        $("select").on("change", function () {
+            sendToServer($(this).attr("id"));
+        });
+
+        // trigger price calculation when one of these fields is filled
+        $('#BerufInput').keyup(function () {
+            f_req();
+        });
+        $('#SummeInput').keyup(function () {
+            f_req();
+        });
+        $('#BehaltInput').keyup(function () {
+            f_req();
+        });
+    });
+</script>
+
+
+</body>
+<style type="text/css">embed[type*="application/x-shockwave-flash"], embed[src*=".swf"], object[type*="application/x-shockwave-flash"], object[codetype*="application/x-shockwave-flash"], object[src*=".swf"], object[codebase*="swflash.cab"], object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"], object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"], object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"] {
+    display: none !important;
+}</style>
+</html>
