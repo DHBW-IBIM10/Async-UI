@@ -34,7 +34,7 @@ $('#collapseTwo').on('hidden', function () {
 function f_req() {
 
     if($("#BerufInput").h5Validate("isValid") && $("#SummeInput").h5Validate("isValid") && $("#BehaltInput").h5Validate("isValid")) {
-        var JSONdata = [{BerufInput: $("#BerufInput").val(), SummeInput: $("#SummeInput").val(), BehaltInput: $("#BehaltInput").val()}];
+        var JSONdata = [{"BerufInput": $("#BerufInput").val(), "SummeInput": $("#SummeInput").val(), "BehaltInput": $("#BehaltInput").val()}];
         $.ajax({
             url: '/pricecalculation',
             type: 'POST',
