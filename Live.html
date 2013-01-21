@@ -654,6 +654,20 @@ body {
         })
     }(window.jQuery)
     $(document).ready(function () {
+    	
+       var formId = (getURLParameter("formId") != "null" ? getURLParameter("formId") : null);
+       var busAddress = "form.data.client";
+
+        
+ 			
+        // check if user has a room in his URL, otherwise ask for ID
+        function checkRoomId() {
+            if (formId == null) {
+                //publish('form.create', prompt('What is your ID?'));
+                formId = prompt('What is your ID?');
+            } 
+           	busAddress = busAddress + "." + formId;
+        }
 
 
         // Websockets 
@@ -682,19 +696,19 @@ body {
 		  }
 		
 		  function openConn() {
+			checkRoomId();	    
 		    if (!eb) {
 		      eb = new vertx.EventBus("http://localhost:8080/eventbus");
 		
 		      eb.onopen = function() {
 		        console.log("Connected");
+		        console.log("Address is" + busAddress);
 		        //log all messages
-		        subscribe("form.client.data");		        
+		        subscribe(busAddress);		        
 		        //handle data that is received from the server
-		        eb.registerHandler("form.client.data", function(msg, replyTo) {
+		        eb.registerHandler(busAddress, function(msg, replyTo) {
 		        	receiveFromServer(msg);
-		          });
-		        
-		        checkRoomId();	        
+		          });    
 		      };
 		
 		      eb.onclose = function() {
@@ -704,7 +718,8 @@ body {
 		    }
 		  }
         
-        
+		// connect with backends eventbus
+		openConn();
         
 
         // read query string 
@@ -713,22 +728,7 @@ body {
                     (location.search.match(RegExp("[?|&]" + name + '=(.+?)(&|$)')) || [, null])[1]
             );
         }
-        var formId = (getURLParameter("formId") != "null" ? getURLParameter("formId") : null);
-
-        
-		// connect with backends eventbus
-	    openConn();
- 			
-        // check if user has a room in his URL, otherwise ask for ID
-        function checkRoomId() {
-            if (formId == null) {
-                publish('form.create', prompt('What is your ID?'));
-            } else {
-                publish('form.create', formId);
-            }        	
-        }
-
-		
+ 		
 
 		/**
 		 * receive data and update form fields.
@@ -768,6 +768,7 @@ body {
             } else {
                 JSONdata[fieldId] = document.getElementById(fieldId).value;
             }
+            JSONdata["formid"] = formId;
             eb.send("form.data", JSONdata);
 
         }
