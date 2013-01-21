@@ -741,6 +741,9 @@ body {
     		//console.log('received a message: ' + JSON.stringify(message));
     		
             for (key in data) {
+            	if(key == "formid"){
+            		continue;
+            	}
                 // distinction between select and input fields
                 if (document.getElementById(key).tagName == "SELECT") {
                     // write content into field
