@@ -32,15 +32,15 @@ $('#collapseTwo').on('hidden', function () {
 
 // dynamically request the price
 function f_req() {
-
     if($("#BerufInput").h5Validate("isValid") && $("#SummeInput").h5Validate("isValid") && $("#BehaltInput").h5Validate("isValid")) {
-        var JSONdata = {BerufInput: $("#BerufInput").val(), SummeInput: $("#SummeInput").val(), BehaltInput: $("#BehaltInput").val()};
+        var JSONdata = {career: $("#BerufInput").val(), amountInsured: $("#SummeInput").val(), ownershipStake: $("#BehaltInput").val()};
         $.ajax({
             url: '/pricecalculation',
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             data: (JSON.stringify(JSONdata)),
             success: function(response) {
+            	console.log("Got price: " + response);
                 $('#Price').val(response.price);
             }
         });
